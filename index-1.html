@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+<title>Para Kimberly ❤️</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden}
+body{font-family:Georgia,"Times New Roman",serif;background:#02010b;color:#fff}
+#space{position:fixed;inset:0;overflow:hidden;background:
+radial-gradient(circle at 50% 48%,rgba(150,55,235,.34),transparent 32%),
+radial-gradient(circle at 15% 25%,rgba(50,90,230,.20),transparent 30%),
+radial-gradient(circle at 85% 75%,rgba(190,45,205,.18),transparent 32%),
+radial-gradient(ellipse at 50% 50%,rgba(255,255,255,.035),transparent 58%),
+linear-gradient(145deg,#010108,#09021b 50%,#010108)}
+#nebulaGlow{position:absolute;inset:-25%;background:
+radial-gradient(ellipse at 50% 50%,rgba(150,70,255,.12),transparent 38%),
+radial-gradient(ellipse at 25% 65%,rgba(70,120,255,.10),transparent 28%),
+radial-gradient(ellipse at 78% 30%,rgba(255,70,220,.09),transparent 28%);
+filter:blur(35px);animation:nebulaMove 12s ease-in-out infinite alternate}
+@keyframes nebulaMove{from{transform:scale(.95) rotate(0deg)}to{transform:scale(1.08) rotate(8deg)}}
+#meteorLayer,#sparkLayer{position:absolute;inset:0;pointer-events:none}
+.star{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;box-shadow:0 0 7px #fff,0 0 14px rgba(180,220,255,.8);animation:twinkle var(--t) ease-in-out infinite alternate}
+.meteor{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;box-shadow:0 0 7px #fff,0 0 14px #b98cff;opacity:0;transform:rotate(-35deg)}
+.meteor:after{content:"";position:absolute;right:2px;top:0;width:90px;height:2px;background:linear-gradient(90deg,rgba(255,255,255,.9),rgba(180,120,255,.45),transparent);filter:blur(1px)}
+@keyframes meteorFly{0%{opacity:0;transform:translate(0,0) rotate(-35deg) scale(.7)}10%{opacity:1}100%{opacity:0;transform:translate(-170px,170px) rotate(-35deg) scale(1.2)}}
+.spark{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;box-shadow:0 0 8px #fff,0 0 16px #c68cff;animation:sparkFly var(--s) ease-in-out infinite}
+@keyframes sparkFly{0%,100%{opacity:.1;transform:scale(.5)}50%{opacity:1;transform:scale(1.5)}}
+
+@keyframes twinkle{from{opacity:.15;transform:scale(.5)}to{opacity:1;transform:scale(1.6)}}
+
+.screen{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:25px;z-index:10;background:radial-gradient(circle,rgba(50,10,85,.18),rgba(0,0,8,.84))}
+.hidden{display:none!important}
+.intro h1{font-size:clamp(40px,11vw,68px);font-weight:normal;margin:18px 0}
+.intro p{font-size:16px;letter-spacing:2px;opacity:.82}
+.heart{font-size:64px;animation:pulse 1.4s infinite;margin:20px}
+@keyframes pulse{50%{transform:scale(1.16)}}
+@keyframes floatPhoto{
+  0%,100%{transform:translate(-50%,-50%) scale(1)}
+  50%{transform:translate(-50%,-50%) scale(1.025)}
+}
+button{padding:14px 26px;border-radius:30px;border:1px solid rgba(255,255,255,.38);background:rgba(255,255,255,.10);color:#fff;font-size:16px;backdrop-filter:blur(9px);box-shadow:0 0 20px rgba(160,80,220,.15)}
+
+#universe{position:fixed;inset:0;overflow:hidden}
+.title{position:absolute;top:23px;width:100%;text-align:center;z-index:8}
+.title small{letter-spacing:4px;opacity:.68;font-size:12px}
+.title h2{font-weight:normal;font-size:27px;margin-top:7px;text-shadow:0 0 14px rgba(255,255,255,.35)}
+
+.photo-wrap{position:absolute;left:50%;top:48%;width:215px;height:215px;transform:translate(-50%,-50%);z-index:6;animation:floatPhoto 5s ease-in-out infinite}
+.photo{width:100%;height:100%;border-radius:50%;object-fit:cover;border:3px solid rgba(255,255,255,.92);box-shadow:0 0 18px rgba(255,255,255,.45),0 0 50px rgba(180,70,255,.75),0 0 95px rgba(100,30,220,.38);background:rgba(255,255,255,.04)}
+.ring{position:absolute;inset:-30px;border:1px solid rgba(255,255,255,.28);border-radius:50%;animation:spin 13s linear infinite}
+.ring:after{content:"✦";position:absolute;top:-10px;left:50%;font-size:18px;text-shadow:0 0 10px #fff}
+.ring2{position:absolute;inset:-52px;border:1px solid rgba(180,120,255,.14);border-radius:50%;transform:rotate(55deg)}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.phrase{position:absolute;width:180px;text-align:center;font-size:14px;font-weight:normal;line-height:1.48;color:#fff;text-shadow:0 0 4px #fff,0 0 13px rgba(180,90,255,.95),0 0 24px rgba(180,90,255,.65);z-index:8;animation:phrase 4.5s ease forwards;pointer-events:none}
+@keyframes phrase{0%{opacity:0;transform:scale(.75) translateY(12px)}18%{opacity:1}72%{opacity:1}100%{opacity:0;transform:scale(1.04) translateY(-10px)}}
+
+.final-button{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:9;min-width:235px}
+.photo-picker{position:absolute;bottom:88px;left:50%;transform:translateX(-50%);z-index:9;font-size:11px;color:rgba(255,255,255,.68);white-space:nowrap}
+.photo-picker input{display:none}
+
+.final-content{max-width:600px}
+.final-content h1{font-size:clamp(34px,9vw,55px);font-weight:normal}
+.final-content p{font-size:20px;line-height:1.7;margin-top:18px}
+.final-heart{font-size:70px;animation:pulse 1.4s infinite;margin-bottom:20px}
+.signature{margin-top:28px;opacity:.72;letter-spacing:2px}
+
+@media(max-width:600px){
+  .photo-wrap{width:205px;height:205px}
+  .phrase{width:165px;font-size:13.5px}
+  .title h2{font-size:24px}
+}
+</style>
+</head>
+<body>
+
+<div id="space">
+  <div id="nebulaGlow"></div>
+  <div id="meteorLayer"></div>
+  <div id="sparkLayer"></div>
+</div>
+
+<section id="intro" class="screen">
+  <div class="intro">
+    <p>Hay algo que quiero decirte...</p>
+    <h1>Para ti, Kimberly</h1>
+    <div class="heart">❤️</div>
+    <button id="start">Abrir mi corazón</button>
+  </div>
+</section>
+
+<section id="universe" class="hidden">
+  <div class="title"><small>MI UNIVERSO</small><h2>Siempre tú ❤️</h2></div>
+
+  <div class="photo-wrap">
+    <div class="ring"></div>
+    <div class="ring2"></div>
+    <img id="photo" class="photo" alt="Nuestra foto">
+  </div>
+
+  <div id="phrases"></div>
+
+  <label class="photo-picker">📸 Toca aquí para poner nuestra foto
+    <input id="photoInput" type="file" accept="image/*">
+  </label>
+
+  <button id="finish" class="final-button">Una última cosa... ❤️</button>
+</section>
+
+<section id="final" class="screen hidden">
+  <div class="final-content">
+    <div class="final-heart">❤️</div>
+    <h1>Entre todos los universos...</h1>
+    <p>tuve la suerte de encontrarte en este.</p>
+    <p>Y si pudiera elegir dónde quedarme para siempre...<br><strong>sería contigo,quiero pasar el resto de mis dias contigo mi amor.</strong></p>
+    <div class="signature">Con todo mi amor ❤️</div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const space=document.getElementById('space');
+  const meteorLayer=document.getElementById('meteorLayer');
+  const sparkLayer=document.getElementById('sparkLayer');
+
+  for(let i=0;i<230;i++){
+    const s=document.createElement('span');
+    s.className='star';
+    s.style.left=Math.random()*100+'%';
+    s.style.top=Math.random()*100+'%';
+    s.style.setProperty('--t',(1+Math.random()*4)+'s');
+    space.appendChild(s);
+  }
+
+  for(let i=0;i<18;i++){
+    const s=document.createElement('span');
+    s.className='spark';
+    s.style.left=Math.random()*100+'%';
+    s.style.top=Math.random()*100+'%';
+    s.style.setProperty('--s',(2+Math.random()*5)+'s');
+    s.style.animationDelay=(-Math.random()*6)+'s';
+    sparkLayer.appendChild(s);
+  }
+
+  function createMeteor(){
+    const m=document.createElement('span');
+    m.className='meteor';
+    m.style.left=(25+Math.random()*90)+'%';
+    m.style.top=(5+Math.random()*55)+'%';
+    m.style.animation='meteorFly '+(1.1+Math.random()*1.3)+'s linear forwards';
+    meteorLayer.appendChild(m);
+    setTimeout(()=>m.remove(),2800);
+  }
+  setInterval(createMeteor,2600);
+  setTimeout(createMeteor,900);
+
+  const phrases=[
+    "De todas las casualidades de mi vida, tú eres mi favorita.",
+    "No sé qué hice para merecerte, pero todos los días agradezco de tenerte.",
+    "Contigo entendí que el amor es bonito y verdadero.",
+    "Si pudiera volver al día en que te conocí, volvería a elegirte sin pensarlo.",
+    "No quiero un amor perfecto, quiero una vida imperfecta, pero contigo.",
+    "Mi lugar favorito siempre será donde estés tú.",
+    "Tú hiciste que mi corazón aprendiera a soñar con un futuro.",
+    "No necesito millones de estrellas cuando tengo una que ilumina mi vida.",
+    "Quiero conocer cada versión de ti y seguir enamorándome de todas.",
+    "Si el tiempo pudiera detenerse, elegiría quedarme contigo en nuestros momentos más bonitos.",
+    "Te elegiría en esta vida, en otra y en cualquier universo.",
+    "No llegaste a completar mi vida; llegaste a hacerla mucho más bonita.",
+    "Quiero ser esa persona que tome tu mano incluso cuando los años hayan pasado.",
+    "Mi sueño no es tener una vida perfecta, es tener una vida contigo.",
+    "Ojalá podamos mirar atrás algún día y decir: valió la pena cada momento.",
+    "Quiero estar contigo cuando cumplamos nuestros sueños y también cuando tengamos que empezar de nuevo.",
+    "Tu sonrisa tiene esa extraña manera de hacer que todo parezca estar bien.",
+    "Entre tantos caminos que existen, mi corazón siempre encuentra el camino hacia ti.",
+    "No quiero que seas solamente un capítulo de mi historia; quiero que seas parte de toda ella.",
+    "Te amo por quien eres, por quien soy cuando estoy contigo y por todo lo que todavía podemos llegar a ser.",
+    "Si algún día dudas de cuánto te amo, mira todas las estrellas y recuerda que ni ellas alcanzan.",
+    "Quiero llenar contigo un álbum de recuerdos que nunca nos cansemos de mirar.",
+    "Mi futuro dejó de darme miedo desde que empecé a imaginarlo contigo.",
+    "Hay personas que llegan a tu vida y la cambian; tú llegaste y cambiaste mi manera de verla.",
+    "Quiero seguir descubriendo el mundo, pero siempre quiero regresar a ti.",
+    "No prometo que todos los días serán fáciles, pero sí quiero estar a tu lado en cada uno.",
+    "Qué bonito sería envejecer contigo y seguir mirándote como el primer día.",
+    "Eres ese pensamiento que aparece sin avisar y consigue sacarme una sonrisa.",
+    "Si mi corazón tuviera un lugar favorito, tendría tu nombre.",
+    "Y si algún día me preguntan cuál fue mi historia de amor favorita, espero poder contarles toda una vida contigo."
+  ];
+
+  const photo=document.getElementById('photo');
+  const input=document.getElementById('photoInput');
+  try{
+    const saved=localStorage.getItem('kimberlyPhoto');
+    if(saved) photo.src=saved;
+  }catch(e){}
+
+  input.addEventListener('change',function(){
+    const file=this.files[0];
+    if(!file)return;
+    const reader=new FileReader();
+    reader.onload=function(e){
+      photo.src=e.target.result;
+      try{localStorage.setItem('kimberlyPhoto',e.target.result)}catch(e){}
+    };
+    reader.readAsDataURL(file);
+  });
+
+  let index=0,started=false;
+
+  function showPhrase(){
+    const p=document.createElement('div');
+    p.className='phrase';
+    p.textContent='❤️ '+phrases[index];
+
+    const w=window.innerWidth,h=window.innerHeight;
+    const margin=12;
+    const maxWidth=Math.min(w-margin*2,340);
+    const phraseWidth=Math.min(maxWidth,Math.max(170,w-24));
+    p.style.width=phraseWidth+'px';
+
+    // La frase puede aparecer sobre la foto, pero siempre queda dentro de la pantalla.
+    const maxX=Math.max(margin,w-phraseWidth-margin);
+    const x=margin+Math.random()*(maxX-margin);
+    const maxY=Math.max(100,h-155);
+    const y=95+Math.random()*Math.max(1,maxY-95);
+    p.style.left=x+'px';
+    p.style.top=y+'px';
+
+    document.getElementById('phrases').appendChild(p);
+    setTimeout(()=>p.remove(),4500);
+    index=(index+1)%phrases.length;
+  }
+
+  document.getElementById('start').onclick=function(){
+    document.getElementById('intro').classList.add('hidden');
+    document.getElementById('universe').classList.remove('hidden');
+    if(!started){
+      started=true;
+      showPhrase();
+      setInterval(showPhrase,3500);
+    }
+  };
+
+  document.getElementById('finish').onclick=function(){
+    document.getElementById('universe').classList.add('hidden');
+    document.getElementById('final').classList.remove('hidden');
+  };
+})();
+</script>
+</body>
+</html>
