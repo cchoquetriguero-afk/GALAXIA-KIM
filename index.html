@@ -368,12 +368,67 @@ button{padding:14px 26px;border-radius:30px;border:1px solid rgba(255,255,255,.3
     letter.addEventListener("click", function (event) {
       if (event.target === letter) letter.style.display = "none";
     });
+    
+    // Botón 2: reproductor dentro de GALAXIA-KIM
+    const musicButton = document.getElementById("kimMusic");
 
-    // Botón 2: abrir YouTube
-    document.getElementById("kimMusic").addEventListener("click", function () {
-      window.location.href =
-        "https://www.youtube.com/results?search_query=Los+Kjarkas+canciones";
+    const musicBox = document.createElement("div");
+    musicBox.id = "kimMusicBox";
+
+    musicBox.style.cssText = `
+      position: fixed;
+      z-index: 10005;
+      width: min(320px, 92vw);
+      left: 50%;
+      bottom: 75px;
+      transform: translateX(-50%);
+      padding: 10px;
+      border: 1px solid #ffb8ed;
+      border-radius: 16px;
+      background: rgba(20, 8, 42, .97);
+      box-shadow: 0 0 22px #d75bff;
+      display: none;
+    `;
+
+    musicBox.innerHTML = `
+      <div style="display:flex;justify-content:space-between;
+        align-items:center;margin-bottom:8px;color:white;
+        font:14px Georgia,serif">
+        <span>🎶 Nuestra canción ❤️</span>
+        <button type="button" id="kimMusicClose"
+          style="padding:5px 10px">✕</button>
+      </div>
+      <iframe
+        id="kimMusicFrame"
+        width="100%"
+        height="180"
+        src=""
+        title="Música romántica de Los Kjarkas"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        referrerpolicy="strict-origin-when-cross-origin"
+        style="display:block;border:0;border-radius:10px"
+        allowfullscreen>
+      </iframe>
+    `;
+
+    document.body.appendChild(musicBox);
+
+    musicButton.addEventListener("click", function () {
+      musicBox.style.display = "block";
+
+      const frame = document.getElementById("kimMusicFrame");
+
+      if (!frame.src || frame.src === "about:blank") {
+        frame.src =
+          "https://www.youtube.com/embed/qe76f_L7o7s?playsinline=1&rel=0";
+      }
     });
+
+    document.getElementById("kimMusicClose")
+      .addEventListener("click", function () {
+        musicBox.style.display = "none";
+        document.getElementById("kimMusicFrame").src = "";
+      });
 
     // Botón 3: generar estrellas
     document.getElementById("kimStars").addEventListener("click", function () {
