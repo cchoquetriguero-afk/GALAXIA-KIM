@@ -87,7 +87,7 @@ button{padding:14px 26px;border-radius:30px;border:1px solid rgba(255,255,255,.3
     <p>Hay algo que quiero decirte...</p>
     <h1>Para ti, Kimberly</h1>
     <div class="heart">❤️</div>
-    <button id="start">Abrir mi corazón</button>
+    <button id="start">toca aqui para abrir</button>
   </div>
 </section>
 
@@ -248,6 +248,290 @@ button{padding:14px 26px;border-radius:30px;border:1px solid rgba(255,255,255,.3
     document.getElementById('final').classList.remove('hidden');
   };
 })();
+ 
+/* ===== MEJORAS GALAXIA-KIM ===== */
+(function () {
+  const style = document.createElement("style");
+  style.textContent = `
+    #kimExtras {
+      position:fixed; z-index:9999; left:8px; right:8px;
+      bottom:12px; display:flex; flex-wrap:wrap;
+      justify-content:center; gap:7px; pointer-events:none;
+      font-family:Georgia,serif;
+    }
+    #kimExtras button {
+      pointer-events:auto; border:1px solid #ffb8ed;
+      border-radius:22px; padding:10px 13px;
+      color:white; background:rgba(37,12,65,.88);
+      box-shadow:0 0 12px #d75bff; font-size:13px;
+    }
+    #kimCounter {
+      position:fixed; z-index:9998; top:10px; left:8px; right:8px;
+      text-align:center; color:#ffe4ff; font:13px Georgia,serif;
+      text-shadow:0 0 8px #ff65e8; pointer-events:none;
+    }
+    #kimLetter {
+      position:fixed; z-index:10000; inset:0; padding:22px;
+      display:none; align-items:center; justify-content:center;
+      background:rgba(4,2,20,.92); color:#fff0fc;
+      font:17px/1.7 Georgia,serif; text-align:center;
+    }
+    #kimLetter .paper {
+      max-width:440px; max-height:80vh; overflow:auto;
+      padding:24px; border:1px solid #f3aaff; border-radius:20px;
+      background:linear-gradient(145deg,#24103d,#100d2a);
+      box-shadow:0 0 28px #c64dff;
+    }
+    #kimLetter button {
+      margin-top:18px; padding:10px 20px; border-radius:20px;
+      border:1px solid pink; color:white; background:#57206d;
+    }
+    .kimExtraStar {
+      position:fixed; z-index:9997; pointer-events:none;
+      color:#fff; text-shadow:0 0 8px #fff,0 0 18px #ff75ed;
+      animation:kimStarFly linear forwards;
+    }
+    @keyframes kimStarFly {
+      from { transform:translate(0,0) scale(.5); opacity:0 }
+      15% { opacity:1 }
+      to { transform:translate(-90px,100px) scale(1.5); opacity:0 }
+    }
+  `;
+  document.head.appendChild(style);
+
+  const counter = document.createElement("div");
+  counter.id = "kimCounter";
+  document.body.appendChild(counter);
+
+  function updateCounter() {
+    const start = new Date(2024, 4, 16, 0, 0, 0);
+    let seconds = Math.max(0, Math.floor((Date.now() - start.getTime()) / 1000));
+    const days = Math.floor(seconds / 86400);
+    seconds %= 86400;
+    const hours = Math.floor(seconds / 3600);
+    seconds %= 3600;
+    const minutes = Math.floor(seconds / 60);
+    seconds %= 60;
+    counter.textContent =
+      "❤️ Cristian & Kimberly · " + days + " días · " +
+      hours + " h · " + minutes + " min · " + seconds + " s ❤️";
+  }
+  updateCounter();
+  setInterval(updateCounter, 1000);
+
+  const controls = document.createElement("div");
+  controls.id = "kimExtras";
+  controls.innerHTML = `
+    <button id="kimOpenLetter">💌 Mi carta</button>
+    <button id="kimMusic">🎶 Nuestra música</button>
+    <button id="kimStars">🌠 Más estrellas</button>
+  `;
+  document.body.appendChild(controls);
+
+  const letter = document.createElement("div");
+  letter.id = "kimLetter";
+  letter.innerHTML = `
+    <div class="paper">
+      <div style="font-size:32px">💌❤️</div>
+      <h2>Para mi Kimberly</h2>
+      <p>
+        Mi niña hermosa, desde aquel 16 de mayo de 2024,
+        mi vida guarda una historia que siempre voy a llevar
+        en el corazón: la nuestra.
+      </p>
+      <p>
+        No necesito que todos los días sean perfectos.
+        Quiero seguir aprendiendo a amarte, cuidarte,
+        escucharte y demostrarte con hechos lo importante
+        que eres para mí.
+      </p>
+      <p>
+        Cuando pienso en el futuro, me hace feliz imaginar
+        todos los recuerdos que todavía nos faltan por vivir.
+        Si algo deseo, es que nunca nos falten las ganas de
+        elegirnos y construir algo bonito juntos.
+      </p>
+      <p>Te amo, mi niña de ojitos bonitos. ❤️</p>
+      <button id="kimCloseLetter">Cerrar ❤️</button>
+    </div>
+  `;
+  document.body.appendChild(letter);
+
+  document.getElementById("kimOpenLetter").onclick = function () {
+    letter.style.display = "flex";
+  };
+  document.getElementById("kimCloseLetter").onclick = function () {
+    letter.style.display = "none";
+  };
+  letter.addEventListener("click", function (event) {
+    if (event.target === letter) letter.style.display = "none";
+  });
+
+  document.getElementById("kimMusic").onclick = function () {
+    window.open(
+      "https://www.youtube.com/results?search_query=Los+Kjarkas+canciones",
+      "_blank"
+    );
+  };
+
+  let starTimer;
+  document.getElementById("kimStars").onclick = function () {
+    for (let i = 0; i < 24; i++) {
+      const star = document.createElement("span");
+      star.className = "kimExtraStar";
+      star.textContent = Math.random() > .5 ? "✦" : "✧";
+      star.style.left = Math.random() * 100 + "vw";
+      star.style.top = Math.random() * 75 + "vh";
+      star.style.fontSize = (10 + Math.random() * 20) + "px";
+      star.style.animationDuration = (1.5 + Math.random() * 2) + "s";
+      document.body.appendChild(star);
+      setTimeout(() => star.remove(), 4000);
+    }
+  };
+})();
+ 
+/* ===== MEJORAS GALAXIA-KIM ===== */
+(function () {
+  const style = document.createElement("style");
+  style.textContent = `
+    #kimExtras {
+      position:fixed; z-index:9999; left:8px; right:8px;
+      bottom:12px; display:flex; flex-wrap:wrap;
+      justify-content:center; gap:7px; pointer-events:none;
+      font-family:Georgia,serif;
+    }
+    #kimExtras button {
+      pointer-events:auto; border:1px solid #ffb8ed;
+      border-radius:22px; padding:10px 13px;
+      color:white; background:rgba(37,12,65,.88);
+      box-shadow:0 0 12px #d75bff; font-size:13px;
+    }
+    #kimCounter {
+      position:fixed; z-index:9998; top:10px; left:8px; right:8px;
+      text-align:center; color:#ffe4ff; font:13px Georgia,serif;
+      text-shadow:0 0 8px #ff65e8; pointer-events:none;
+    }
+    #kimLetter {
+      position:fixed; z-index:10000; inset:0; padding:22px;
+      display:none; align-items:center; justify-content:center;
+      background:rgba(4,2,20,.92); color:#fff0fc;
+      font:17px/1.7 Georgia,serif; text-align:center;
+    }
+    #kimLetter .paper {
+      max-width:440px; max-height:80vh; overflow:auto;
+      padding:24px; border:1px solid #f3aaff; border-radius:20px;
+      background:linear-gradient(145deg,#24103d,#100d2a);
+      box-shadow:0 0 28px #c64dff;
+    }
+    #kimLetter button {
+      margin-top:18px; padding:10px 20px; border-radius:20px;
+      border:1px solid pink; color:white; background:#57206d;
+    }
+    .kimExtraStar {
+      position:fixed; z-index:9997; pointer-events:none;
+      color:#fff; text-shadow:0 0 8px #fff,0 0 18px #ff75ed;
+      animation:kimStarFly linear forwards;
+    }
+    @keyframes kimStarFly {
+      from { transform:translate(0,0) scale(.5); opacity:0 }
+      15% { opacity:1 }
+      to { transform:translate(-90px,100px) scale(1.5); opacity:0 }
+    }
+  `;
+  document.head.appendChild(style);
+
+  const counter = document.createElement("div");
+  counter.id = "kimCounter";
+  document.body.appendChild(counter);
+
+  function updateCounter() {
+    const start = new Date(2024, 4, 16, 0, 0, 0);
+    let seconds = Math.max(0, Math.floor((Date.now() - start.getTime()) / 1000));
+    const days = Math.floor(seconds / 86400);
+    seconds %= 86400;
+    const hours = Math.floor(seconds / 3600);
+    seconds %= 3600;
+    const minutes = Math.floor(seconds / 60);
+    seconds %= 60;
+    counter.textContent =
+      "❤️ Cristian & Kimberly · " + days + " días · " +
+      hours + " h · " + minutes + " min · " + seconds + " s ❤️";
+  }
+  updateCounter();
+  setInterval(updateCounter, 1000);
+
+  const controls = document.createElement("div");
+  controls.id = "kimExtras";
+  controls.innerHTML = `
+    <button id="kimOpenLetter">💌 Mi carta</button>
+    <button id="kimMusic">🎶 Nuestra música</button>
+    <button id="kimStars">🌠 Más estrellas</button>
+  `;
+  document.body.appendChild(controls);
+
+  const letter = document.createElement("div");
+  letter.id = "kimLetter";
+  letter.innerHTML = `
+    <div class="paper">
+      <div style="font-size:32px">💌❤️</div>
+      <h2>Para mi Kimberly</h2>
+      <p>
+        Mi niña hermosa, desde aquel 16 de mayo de 2024,
+        mi vida guarda una historia que siempre voy a llevar
+        en el corazón: la nuestra.
+      </p>
+      <p>
+        No necesito que todos los días sean perfectos.
+        Quiero seguir aprendiendo a amarte, cuidarte,
+        escucharte y demostrarte con hechos lo importante
+        que eres para mí.
+      </p>
+      <p>
+        Cuando pienso en el futuro, me hace feliz imaginar
+        todos los recuerdos que todavía nos faltan por vivir.
+        Si algo deseo, es que nunca nos falten las ganas de
+        elegirnos y construir algo bonito juntos.
+      </p>
+      <p>Te amo, mi niña de ojitos bonitos. ❤️</p>
+      <button id="kimCloseLetter">Cerrar ❤️</button>
+    </div>
+  `;
+  document.body.appendChild(letter);
+
+  document.getElementById("kimOpenLetter").onclick = function () {
+    letter.style.display = "flex";
+  };
+  document.getElementById("kimCloseLetter").onclick = function () {
+    letter.style.display = "none";
+  };
+  letter.addEventListener("click", function (event) {
+    if (event.target === letter) letter.style.display = "none";
+  });
+
+  document.getElementById("kimMusic").onclick = function () {
+    window.open(
+      "https://www.youtube.com/results?search_query=Los+Kjarkas+canciones",
+      "_blank"
+    );
+  };
+
+  let starTimer;
+  document.getElementById("kimStars").onclick = function () {
+    for (let i = 0; i < 24; i++) {
+      const star = document.createElement("span");
+      star.className = "kimExtraStar";
+      star.textContent = Math.random() > .5 ? "✦" : "✧";
+      star.style.left = Math.random() * 100 + "vw";
+      star.style.top = Math.random() * 75 + "vh";
+      star.style.fontSize = (10 + Math.random() * 20) + "px";
+      star.style.animationDuration = (1.5 + Math.random() * 2) + "s";
+      document.body.appendChild(star);
+      setTimeout(() => star.remove(), 4000);
+    }
+  };
+})();
+/* ===== FIN MEJORAS GALAXIA-KIM ===== */
+
 </script>
 </body>
 </html>
